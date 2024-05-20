@@ -1,0 +1,82 @@
+/* UserPage.css */
+
+body {
+  background-color: #007bff;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 0px;
+  padding: 0;
+}
+
+.userPage {
+  width: 100%;
+  padding: 20px;
+  margin-top: 10%;
+  box-sizing: border-box;
+
+}
+
+.userPage h1 {
+  margin-top: -10px;
+  font-size: 36px;
+  color: white;
+}
+
+.userPage h2 {
+  font-size: 24px;
+  color: white;
+}
+
+.userPage .add {
+  margin: 20px 0;
+  padding: 10px 20px;
+  background-color: white;
+  border: none;
+  border-radius: 3px;
+  color: black;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.userPage .add:hover {
+  background-color: darkgray;
+  border: 1px solid black;
+}
+
+.userPage table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.userPage th, .userPage td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #2c2f33;
+}
+
+.userPage th {
+  background-color: white;
+  color:#1c1e22;
+}
+
+.userPage td {
+  background-color: white;
+  color: #2c2f33;
+}
+
+.userPage tr:hover {
+  background-color: #3a3d42;
+}
+
+.userPage tr:nth-child(even) {
+  background-color: #34373b;
+}
+.logoutbtn {
+  margin-left: 900px;
+  /* margin-top: 300px; */
+  height: 20px;
+  width: 70px;
+  
+  background-color: #1111dd;
+}
