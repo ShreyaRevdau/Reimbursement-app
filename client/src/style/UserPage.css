@@ -1,82 +1,117 @@
 /* UserPage.css */
 
-body {
-  background-color: #007bff;
-  color: black;
-  font-family: Arial, sans-serif;
-  margin: 0px;
-  padding: 0;
-}
-
 .userPage {
-  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  margin-top: 10%;
-  box-sizing: border-box;
-
+  background-color: #07c6f6;
 }
 
-.userPage h1 {
-  margin-top: -10px;
-  font-size: 36px;
-  color: white;
-}
-
-.userPage h2 {
+h1 {
   font-size: 24px;
-  color: white;
+  margin-bottom: 20px;
 }
 
-.userPage .add {
-  margin: 20px 0;
-  padding: 10px 20px;
-  background-color: white;
+input[type="text"] {
+  width: 97%;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 27px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+/* .logoutbtn {
+  background-color: #f10b0b;
+  color: #fff;
   border: none;
-  border-radius: 3px;
-  color: black;
+  padding: 10px 20px;
   font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+} */
+
+.logoutbtn {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
   cursor: pointer;
 }
 
-.userPage .add:hover {
-  background-color: darkgray;
-  border: 1px solid black;
+.add {
+  background-color: #0000ff; /* Blue background */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer
 }
 
-.userPage table {
+.add:hover,
+.logoutbtn:hover {
+  background-color: #3a3a3a;
+}
+
+/* input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+} */
+
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
 }
 
-.userPage th, .userPage td {
-  padding: 12px;
+body {
+  background-color: #efe8e8;
+  color: black;
+  font-family: Arial, sans-serif;
+  margin: 10px 10px 20px 30px;
+  padding: 0;
+}
+
+th, td {
+  border: 1px solid #131212;
+  padding: 8px;
   text-align: left;
-  border-bottom: 1px solid #2c2f33;
 }
 
-.userPage th {
-  background-color: white;
-  color:#1c1e22;
+th {
+  background-color: #f2f2f2;
+  cursor: pointer;
 }
 
-.userPage td {
-  background-color: white;
-  color: #2c2f33;
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
-.userPage tr:hover {
-  background-color: #3a3d42;
+.pagination {
+  list-style-type: none;
+  padding: 0;
+  margin: 20px 0;
 }
 
-.userPage tr:nth-child(even) {
-  background-color: #34373b;
+.pagination li {
+  display: inline-block;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
 }
-.logoutbtn {
-  margin-left: 900px;
-  /* margin-top: 300px; */
-  height: 20px;
-  width: 70px;
-  
-  background-color: #1111dd;
+
+.pagination li:hover {
+  background-color: #f2f2f2;
 }
