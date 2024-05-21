@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import CSS
 import './style/Login.css'; // Ensure this path is correct
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
@@ -31,64 +31,58 @@ function Login() {
 
     setEmailError("");
     setPasswordError("");
-    setErrorMsg("");
-
-    let valid = true;
 
     if (!validateEmail(username)) {
       setEmailError("Invalid email format or domain. Email must end with @revdau.com.");
-      valid = false;
+      return;
     }
 
     if (!validatePassword(password)) {
       setPasswordError("Password must be at least 8 characters long and contain uppercase, lowercase, and numeric characters.");
-      valid = false;
-    }
-
-    if (!valid) {
       return;
     }
-
     if (username === "admin@revdau.com" && password === "Admin@123") {
-      navigate("/adminPanel");
+      toast.success("Login Successful!");
+      setTimeout(() => {
+        navigate("/adminPanel");
+        // navigate(`/user/${username}`);
+      }, 2000);
       return;
     }
-
     Axios.post("http://localhost:3001/login", {
       email: username,
       password: password,
     })
       .then((response) => {
-        if (response.data.message) {
-          setLoginStatus(response.data.message);
-          setErrorMsg("");
-        } else if (response.status === 200) {
-          navigate(`/user/${username}`);
+        console.log("Response data:", response.data);
+        const userData = response.data.find(user => user.username.toLowerCase() === username.toLowerCase() || user.password === password);
+        if (userData) {
+          toast.success("Login Successful!"); // Display success toast
+          setTimeout(() => {
+            navigate(`/user/${username}`);
+          }, 2000); // Delay navigation by 2 seconds (2000 milliseconds)
         } else {
-          setErrorMsg("Wrong username or password.");
+          toast.error("Wrong username or password.");
         }
       })
       .catch((error) => {
         console.error("Error logging in:", error);
-        setLoginStatus("");
-        setErrorMsg("Error logging in. Please try again.");
+        toast.error("Error logging in. Please try again.");
       });
-  };
-
-  const handleCloseMsg = () => {
-    setErrorMsg("");
+    
   };
 
   return (
     <div className="login-container">
       <div className="left-side">
-      <img src={`${process.env.PUBLIC_URL}/business-people-working-laptop-development_1262-18907.jpg`} alt="People working on laptops" />
+        <img src={`${process.env.PUBLIC_URL}/business-people-working-laptop-development_1262-18907.jpg`} alt="People working on laptops" />
       </div>
       <div className="right-side">
+        <ToastContainer /> {/* ToastContainer component */}
         <h2>Login</h2>
         <form className="login-form" onSubmit={login}>
           <div className="input-group">
-            <label htmlFor="username">Email <span style={{color:"red"}}>*</span></label>
+            <label htmlFor="username">Email <span style={{ color: "red" }}>*</span></label>
             <input
               className="textInput"
               type="text"
@@ -101,7 +95,7 @@ function Login() {
             {emailError && <p className="errmsg">{emailError}</p>}
           </div>
           <div className="input-group">
-            <label htmlFor="password">Password <span style={{color:"red"}}>*</span></label>
+            <label htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
             <input
               className="textInput"
               type="password"
@@ -125,15 +119,6 @@ function Login() {
             <button type="button" className="social-btn twitter">T</button>
             <button type="button" className="social-btn google">G</button>
           </div>
-          {loginStatus && (
-            <h1 style={{color: "red", fontSize: "15px", textAlign: "center", marginTop: "20px"}}>{loginStatus}</h1>
-          )}
-          {errorMsg && (
-            <div>
-              <p>{errorMsg}</p>
-              <button onClick={handleCloseMsg}>Close</button>
-            </div>
-          )}
         </form>
       </div>
     </div>
