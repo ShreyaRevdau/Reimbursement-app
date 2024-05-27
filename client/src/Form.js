@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './style/Form.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "./Modal";
+import '../src/style/Form.css';
 
-function Form({ username }) { // Accept username as a prop
+function Form({username, setModalOpen }) {
     const [email, setEmail] = useState("");
     const [type, setType] = useState("");
     const [amount, setAmount] = useState("");
@@ -13,18 +15,16 @@ function Form({ username }) { // Accept username as a prop
     const [showModal, setShowModal] = useState(false);
     const [formData, setFormData] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-
     const navigate = useNavigate();
 
     const validateInputs = () => {
         if (!email || !type || !amount || !date || !file) {
-            window.alert("All fields are required.");
+            toast.error("All fields are required.");
             return false;
         }
-        // Email format validation
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(email)) {
-            window.alert("Please enter a valid email address.");
+            toast.error("Please enter a valid email address.");
             return false;
         }
         return true;
@@ -36,7 +36,7 @@ function Form({ username }) { // Accept username as a prop
         setIsSubmitting(true);
         const formData = new FormData();
         formData.append("email", email);
-        formData.append("username", username); // Include username
+        // formData.append("username", username);
         formData.append("type", type);
         formData.append("amount", amount);
         formData.append("date", date);
@@ -44,40 +44,56 @@ function Form({ username }) { // Accept username as a prop
 
         axios.post('http://localhost:3001/api/form', formData)
             .then((response) => {
-                console.log("Response status:", response.status);
-                console.log("Response data:", response.data);
-
-                if (response.status === 200) {
-                    if (response.data.Status === 'Success') {
+                console.log("Response data:", response.data.affectedRows);
+                if (response.data.affectedRows === 1) {
+                    if (response.data.protocol41 === true) {
                         setFormData({ email, type, amount, date, uploadFile: file.name });
-                        setShowModal(true);
-                        window.alert("File Successfully Uploaded");
+                        toast.success("Data submitted successfully");
+                        setTimeout(() => {
+                            setShowModal(true);
+                            // navigate("/");
+                          }, 1000);
+
+                        // Update status here
+                        const id = response.data.id; // Assuming you receive the ID from the backend
+                        updateStatus(id, "pending"); // Update status to "pending"
                     } else {
-                        window.alert("Data submitted successfully, but there was an issue with the server response.");
+                        toast.error("Data submitted successfully, but there was an issue with the server response.");
                     }
                 } else {
-                    window.alert("Error: Unexpected status code received.");
+                    toast.error("Error: Unexpected status code received.");
                 }
             })
             .catch(err => {
                 console.error("Error submitting data:", err.response ? err.response.data : err.message);
-                window.alert("Error: Data is not submitted");
+                toast.error("Error: Data is not submitted");
             })
             .finally(() => {
                 setIsSubmitting(false);
             });
     };
 
+    const updateStatus = (id, status) => {
+        axios.put(`http://localhost:3001/api/form/${id}`, { status })
+            .then((response) => {
+                console.log("Status updated successfully:", response.data);
+            })
+            .catch((error) => {
+                console.error("Error updating status:", error);
+            });
+    };
+
     const handleClose = () => {
-        setShowModal(false);
-        navigate('/UserPage');
+        setModalOpen(false);
     };
 
     return (
         <div className="container">
+            <ToastContainer />
             {showModal && <Modal formData={formData} onClose={handleClose} />}
             <div className="form-container">
                 <div className="row">
+                    <button onClick={handleClose} className="btn btn-danger">X Close</button>
                     <div className="col-12">
                         <label className="form-label">Email</label>
                         <input 

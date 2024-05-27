@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../src/style/Register.css";
 
 function Register() {
@@ -55,21 +57,29 @@ function Register() {
     }).then((response) => {
       if (response.data.message) {
         setRegisterStatus(response.data.message);
+        toast.error("Registration Failed!");
       } else {
         setRegisterStatus("ACCOUNT CREATED SUCCESSFULLY");
         setEmail("");
         setUsername("");
         setPassword("");
-        navigate(`/user/${username}`);
+        toast.success("Registration Successful!");
+        setTimeout(() => {
+          navigate(`/user/${username}`);
+        }, 2000); // Delay navigation by 2 seconds
       }
+    }).catch((error) => {
+      toast.error("Registration Failed!");
     });
   };
 
   return (
-    <div className="loginForm">
+    <div className="registerForm">
+      <ToastContainer /> {/* ToastContainer component */}
       <form>
         <h4>Register Here</h4>
-        <label htmlFor="email">Email Address <span style={{color:"red"}} >*</span></label>
+        
+        <label htmlFor="email">Email Address <span style={{color:"red"}}>*</span></label>
         <input
           className="textInput"
           type="text"
@@ -81,7 +91,7 @@ function Register() {
         />
         {emailError && <p style={{ color: "red" }}>{emailError}</p>}
         
-        <label htmlFor="username">Username <span style={{color:"red"}} >*</span></label>
+        <label htmlFor="username">Username <span style={{color:"red"}}>*</span></label>
         <input
           className="textInput"
           type="text"
@@ -92,7 +102,7 @@ function Register() {
           required
         />
         
-        <label htmlFor="password">Password <span style={{color:"red"}} >*</span></label>
+        <label htmlFor="password">Password <span style={{color:"red"}}>*</span></label>
         <input
           className="textInput"
           type="password"

@@ -1,0 +1,134 @@
+/* UserPage.css */
+
+.userPage {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: #c1dbe1; */
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  input[type="text"] {
+    width:40%;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 27px;
+    margin-bottom: 20px;
+    margin-top: 20px; 
+    margin-left: 10px;
+  }
+  
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* .logoutbtn {
+    background-color: #f10b0b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
+  .logoutbtn {
+    background-color: #ff6347;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add {
+    background-color: #0000ff; /* Blue background */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer
+  }
+  
+  .add:hover,
+  .logoutbtn:hover {
+    background-color: #3a3a3a;
+  }
+  
+  /* input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  } */
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  body {
+    background-color: #efe8e8;
+    color: black;
+    font-family: Arial, sans-serif;
+    margin: 10px 10px 20px 30px;
+    padding: 0;
+  }
+  
+  th, td {
+    border: 1px solid #131212;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: blue;
+    cursor: pointer;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  
+  .Modal{
+  position: fixed;
+  inset: 1;
+  z-index: 100;
+  }
+  
+  .pagination {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+  }
+  
+  .pagination li {
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+  
+  .pagination li:hover {
+    background-color: #f2f2f2;
+  }
+  ul,li{
+    list-style-type: none;
+    display: inline-block; /* Or use display: inline; */
+    margin-right: 10px; /* Adjust as needed */
+    
+  }
+  
+  

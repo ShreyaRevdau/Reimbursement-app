@@ -60,7 +60,7 @@ function Login() {
           toast.success("Login Successful!"); // Display success toast
           setTimeout(() => {
             navigate(`/user/${username}`);
-          }, 2000); // Delay navigation by 2 seconds (2000 milliseconds)
+          }, 1000); // Delay navigation by 2 seconds (2000 milliseconds)
         } else {
           toast.error("Wrong username or password.");
         }
@@ -73,6 +73,7 @@ function Login() {
   };
 
   return (
+    <div className="login-body">
     <div className="login-container">
       <div className="left-side">
         <img src={`${process.env.PUBLIC_URL}/business-people-working-laptop-development_1262-18907.jpg`} alt="People working on laptops" />
@@ -122,6 +123,8 @@ function Login() {
         </form>
       </div>
     </div>
+    </div>
+
   );
 }
 

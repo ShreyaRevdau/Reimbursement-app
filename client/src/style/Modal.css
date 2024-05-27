@@ -24,8 +24,8 @@
 }
 
 .close {
-  color: #aaa;
-  float: right;
+  color: #f60c0c;
+  float: center;
   font-size: 28px;
   font-weight: bold;
   cursor: pointer;

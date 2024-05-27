@@ -1,40 +1,71 @@
-.loginForm {
-  max-width: 400px;
-  margin: auto;
+/* General form styles */
+.registerForm {
+  max-width: 500px;
+  margin: 50px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  background-color: #f9f9f9;
+  background: #f8f9fa; /* Light background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-h4 {
-  color: blue;
+.registerForm h4 {
   text-align: center;
+  color: #007bff; /* Primary blue color */
+  margin-bottom: 20px;
 }
 
-.textInput {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.registerForm label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.button {
+.registerForm .textInput {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  background-color: blue;
-  color: white;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 14px;
+  box-sizing: border-box;
+}
+
+.registerForm .button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff; /* Primary blue color */
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
-.button:hover {
-  background-color: darkblue;
+.registerForm .button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
 }
 
-h1 {
-  color: blue;
+.registerForm p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.registerForm a {
+  text-decoration: none;
+}
+
+.registerForm .button + .button {
+  margin-top: 10px;
+}
+
+.registerForm input[type="text"],
+.registerForm input[type="password"] {
+  background-color: #e9ecef;
+}
+
+.registerForm input[type="text"]:focus,
+.registerForm input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }

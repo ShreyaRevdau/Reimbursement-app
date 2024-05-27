@@ -1,11 +1,12 @@
 import React from "react";
-import './style/Modal.css';
+// import './style/Modal.css';
 
 const Modal = ({ formData, onClose }) => {
     if (!formData) return null; // Ensure formData is not null
 
     return (
         <div className="modal">
+            <button onClick={onClose} className="btn btn-primary">Close</button>
             <div className="modal-content">
                 <span className="close" onClick={onClose}>&times;</span>
                 <h2>Submission Successful</h2>
@@ -40,7 +41,6 @@ const Modal = ({ formData, onClose }) => {
                         </tr>
                     </tbody>
                 </table>
-                <button onClick={onClose} className="btn btn-danger">Close</button>
             </div>
         </div>
     );

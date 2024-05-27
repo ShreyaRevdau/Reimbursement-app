@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useNavigate } from "react-router-dom";
 
-import './style/Table.css';
+// import './style/Table.css';
 
 const Table = () => {
   const [formData, setFormData] = useState([]);

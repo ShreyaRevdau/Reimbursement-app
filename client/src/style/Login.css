@@ -1,5 +1,6 @@
+/* Login.css */
 
-body {
+.login-body {
   font-family: 'Arial', sans-serif;
   background-color: #f0f2f5;
   margin: 0;
@@ -7,12 +8,11 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  width: 200vh;
 }
 
 .login-container {
   display: flex;
-  width: 100%;
+  width: 80%; /* Adjust width as needed */
   height: 80vh;
   background-color: white;
   border-radius: 10px;
@@ -36,7 +36,7 @@ body {
 .right-side {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 20px; /* Adjust padding as needed */
 }
 
 h2 {
@@ -54,17 +54,16 @@ h2 {
 }
 
 .input-group label {
-  display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #333;;
+  color: #333;
 }
 
 .input-group input {
-  width: 100%;
+  width: calc(100% - 20px);
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 27px;
   box-sizing: border-box;
 }
 
@@ -135,4 +134,9 @@ h2 {
 .errmsg {
   color: red;
   font-size: 12px;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+  width: calc(100% - 20px);
 }
