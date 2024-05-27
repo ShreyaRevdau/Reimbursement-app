@@ -1,5 +1,5 @@
 import React from "react";
-// import './style/Modal.css';
+
 
 const Modal = ({ formData, onClose }) => {
     if (!formData) return null; // Ensure formData is not null

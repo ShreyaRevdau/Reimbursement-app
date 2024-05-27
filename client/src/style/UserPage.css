@@ -26,16 +26,6 @@ h2 {
   margin-bottom: 10px;
 }
 
-/* .logoutbtn {
-  background-color: #f10b0b;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
-} */
-
 .logoutbtn {
   background-color: #ff6347;
   color: #fff;
@@ -60,14 +50,6 @@ h2 {
 .logoutbtn:hover {
   background-color: #3a3a3a;
 }
-
-/* input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-} */
 
 table {
   width: 100%;

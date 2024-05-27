@@ -3,7 +3,7 @@ import Axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; // Import CSS
-import './style/Login.css'; // Ensure this path is correct
+import './style/Login.css'; 
 
 function Login() {
   const [username, setUsername] = useState("");
