@@ -91,6 +91,9 @@ function Form({ username, setModalOpen }) {
     const handleClose = () => {
         setModalOpen(false);
     };
+    
+    // Get today's date in the format YYYY-MM-DD
+    const today = new Date().toISOString().split('T')[0];
 
     return (
         <div className="container">
@@ -142,6 +145,7 @@ function Form({ username, setModalOpen }) {
                             autoComplete='off'
                             value={date}
                             onChange={(e) => setDate(e.target.value)} 
+                            max= {today}
                         />
                     </div>
                     <div className="col-12">
