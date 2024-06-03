@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from "react-toastify";
@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "./Modal";
 import '../src/style/Form.css';
 
-function Form({username, setModalOpen }) {
+function Form({ username, setModalOpen }) {
     const [email, setEmail] = useState("");
     const [type, setType] = useState("");
     const [amount, setAmount] = useState("");
@@ -16,6 +16,14 @@ function Form({username, setModalOpen }) {
     const [formData, setFormData] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Fetch email from local storage
+        const storedEmail = localStorage.getItem("email");
+        if (storedEmail) {
+            setEmail(storedEmail);
+        }
+    }, []);
 
     const validateInputs = () => {
         if (!email || !type || !amount || !date || !file) {
@@ -36,7 +44,6 @@ function Form({username, setModalOpen }) {
         setIsSubmitting(true);
         const formData = new FormData();
         formData.append("email", email);
-        // formData.append("username", username);
         formData.append("type", type);
         formData.append("amount", amount);
         formData.append("date", date);
@@ -51,12 +58,10 @@ function Form({username, setModalOpen }) {
                         toast.success("Data submitted successfully");
                         setTimeout(() => {
                             setShowModal(true);
-                            // navigate("/");
-                          }, 1000);
+                        }, 1000);
 
-                        // Update status here
-                        const id = response.data.id; // Assuming you receive the ID from the backend
-                        updateStatus(id, "pending"); // Update status to "pending"
+                        const id = response.data.id;
+                        updateStatus(id, "pending");
                     } else {
                         toast.error("Data submitted successfully, but there was an issue with the server response.");
                     }

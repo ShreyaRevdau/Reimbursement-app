@@ -43,9 +43,9 @@ function Login() {
     }
     if (username === "admin@revdau.com" && password === "Admin@123") {
       toast.success("Login Successful!");
+      localStorage.setItem("email", username); // Save email to local storage
       setTimeout(() => {
         navigate("/adminPanel");
-        // navigate(`/user/${username}`);
       }, 2000);
       return;
     }
@@ -57,10 +57,11 @@ function Login() {
         console.log("Response data:", response.data);
         const userData = response.data.find(user => user.username.toLowerCase() === username.toLowerCase() || user.password === password);
         if (userData) {
-          toast.success("Login Successful!"); // Display success toast
+          toast.success("Login Successful!");
+          localStorage.setItem("email", username); // Save email to local storage
           setTimeout(() => {
             navigate(`/user/${username}`);
-          }, 1000); // Delay navigation by 2 seconds (2000 milliseconds)
+          }, 1000);
         } else {
           toast.error("Wrong username or password.");
         }
@@ -69,62 +70,60 @@ function Login() {
         console.error("Error logging in:", error);
         toast.error("Error logging in. Please try again.");
       });
-    
   };
 
   return (
     <div className="login-body">
-    <div className="login-container">
-      <div className="left-side">
-        <img src={`${process.env.PUBLIC_URL}/business-people-working-laptop-development_1262-18907.jpg`} alt="People working on laptops" />
-      </div>
-      <div className="right-side">
-        <ToastContainer /> {/* ToastContainer component */}
-        <h2>Login</h2>
-        <form className="login-form" onSubmit={login}>
-          <div className="input-group">
-            <label htmlFor="username">Email <span style={{ color: "red" }}>*</span></label>
-            <input
-              className="textInput"
-              type="text"
-              name="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter your email"
-              required
-            />
-            {emailError && <p className="errmsg">{emailError}</p>}
-          </div>
-          <div className="input-group">
-            <label htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
-            <input
-              className="textInput"
-              type="password"
-              name="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your Password"
-              required
-            />
-            {passwordError && <p className="errmsg">{passwordError}</p>}
-          </div>
-          <button className="login-btn" type="submit">
-            Login
-          </button>
-          <p className="create-account">
-            <Link to="/register" className="createbtn">Create Account</Link>
-          </p>
-          <p className="social-login">Or login with</p>
-          <div className="social-buttons">
-            <button type="button" className="social-btn facebook">F</button>
-            <button type="button" className="social-btn twitter">T</button>
-            <button type="button" className="social-btn google">G</button>
-          </div>
-        </form>
+      <div className="login-container">
+        <div className="left-side">
+          <img src={`${process.env.PUBLIC_URL}/business-people-working-laptop-development_1262-18907.jpg`} alt="People working on laptops" />
+        </div>
+        <div className="right-side">
+          <ToastContainer /> {/* ToastContainer component */}
+          <h2>Login</h2>
+          <form className="login-form" onSubmit={login}>
+            <div className="input-group">
+              <label htmlFor="username">Email <span style={{ color: "red" }}>*</span></label>
+              <input
+                className="textInput"
+                type="text"
+                name="username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter your email"
+                required
+              />
+              {emailError && <p className="errmsg">{emailError}</p>}
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password <span style={{ color: "red" }}>*</span></label>
+              <input
+                className="textInput"
+                type="password"
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your Password"
+                required
+              />
+              {passwordError && <p className="errmsg">{passwordError}</p>}
+            </div>
+            <button className="login-btn" type="submit">
+              Login
+            </button>
+            <p className="create-account">
+              <Link to="/register" className="createbtn">Create Account</Link>
+            </p>
+            <p className="social-login">Or login with</p>
+            <div className="social-buttons">
+              <button type="button" className="social-btn facebook">F</button>
+              <button type="button" className="social-btn twitter">T</button>
+              <button type="button" className="social-btn google">G</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-    </div>
-
   );
 }
 
